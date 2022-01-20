@@ -1,0 +1,97 @@
+version: '3.3'
+services:
+  #Service resource
+  appresource:
+    build:
+      context: ./YouMedia-resource
+      dockerfile: Dockerfile_resource
+    restart: on-failure
+    ports:
+      - "9090:8080"
+    environment:
+      MYSQL_HOST: mysqldb_resource
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: youmedia
+      MYSQL_DATABASE: youmedia_db_mediaresource
+      MYSQL_ROOT_PASSWORD: youmedia
+    depends_on:
+      - mysqldb_resource
+    tty: true
+
+  mysqldb_resource:
+    image: mysql:5.7
+    ports:
+      - "6002:3306"
+    environment:
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=youmedia
+      - MYSQL_ROOT_PASSWORD=youmedia
+      - MYSQL_DATABASE=youmedia_db_mediaresource
+      - MYSQL_TCP_PORT=6002
+    volumes:
+      - storage:/var/lib/docker/volumes/mysqldb_resource
+
+  #Service customer
+  appcustomer:
+    build:
+      context: ./YouMedia-customer
+      dockerfile: Dockerfile_customer
+    restart: on-failure
+    ports:
+      - "9091:8080"
+    environment:
+      MYSQL_HOST: mysqldb_customer
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: youmedia
+      MYSQL_DATABASE: youmedia_db_customer
+      MYSQL_ROOT_PASSWORD: youmedia
+    depends_on:
+      - mysqldb_customer
+    tty: true
+
+  mysqldb_customer:
+    image: mysql:5.7
+    ports:
+      - "6003:3306"
+    environment:
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=youmedia
+      - MYSQL_ROOT_PASSWORD=youmedia
+      - MYSQL_DATABASE=youmedia_db_customer
+      - MYSQL_TCP_PORT=6003
+    volumes:
+      - storage:/var/lib/docker/volumes/mysqldb_customer
+  
+  #Service payment
+  apppayment:
+    build:
+      context: ./YouMedia-payment
+      dockerfile: Dockerfile_payment
+    restart: on-failure
+    ports:
+      - "9092:8080"
+    environment:
+      MYSQL_HOST: mysqldb_payment
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: youmedia
+      MYSQL_DATABASE: youmedia_db_payment
+      MYSQL_ROOT_PASSWORD: youmedia
+    depends_on:
+      - mysqldb_payment
+    tty: true
+
+  mysqldb_payment:
+    image: mysql:5.7
+    ports:
+      - "6004:3306"
+    environment:
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=youmedia
+      - MYSQL_ROOT_PASSWORD=youmedia
+      - MYSQL_DATABASE=youmedia_db_payment
+      - MYSQL_TCP_PORT=6004
+    volumes:
+      - storage:/var/lib/docker/volumes/mysqldb_payment
+
+volumes:
+  storage:
