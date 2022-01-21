@@ -14,7 +14,7 @@ public class CustomerService {
     @Autowired
     CustomerRepository repository;
 
-    public  Customer getCustomer(Integer id){
+    public  Customer getUser(Integer id){
         return repository.findById(id).get();
     }
 
@@ -22,8 +22,8 @@ public class CustomerService {
         return repository.findAll();
     }
 
-    public Customer addProduct(Customer product){
-        return repository.save(product);
+    public Customer register(Customer user){
+        return repository.save(user);
     }
 
     public String delete(Integer id){
