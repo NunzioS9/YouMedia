@@ -14,7 +14,7 @@ public class PaymentService {
     PaymentRepository repository;
 
     public Payment register(Payment payment){
-        return repository.save(Payment);
+        return repository.save(payment);
     }
 
     public Payment getPayment(Integer id){
@@ -27,7 +27,7 @@ public class PaymentService {
 
     }
 
-    public Iterable<Customer> getAll(){
+    public Iterable<Payment> getAll(){
         return repository.findAll();
     }
 
