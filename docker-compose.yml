@@ -93,5 +93,17 @@ services:
     volumes:
       - storage:/var/lib/docker/volumes/mysqldb_payment
 
+    #ApiGateway
+  apw:
+    build:
+      context: ./ApiGateway
+      dockerfile: Dockerfile
+    ports:
+      - "58081:58081"
+    depends_on:
+      - appcustomer
+      - apppayment
+      - appresource
+
 volumes:
   storage:
