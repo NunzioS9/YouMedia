@@ -28,39 +28,47 @@ public class Customer {
     private String password;
 
     // Metodi Getter
-    public Integer getId(){
+    public Integer getId() {
         return id;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public String getEmail(){
+
+    public String getEmail() {
         return email;
     }
+
     public String getPassword() {
         return password;
     }
 
+
     // Metodi Setter
-    public Customer setId(Integer id){
+    public Customer setId(Integer id) {
         this.id = id;
         return this;
     }
-    public Customer setName(String name){
+
+    public Customer setName(String name) {
         this.name = name;
         return this;
     }
-    public Customer setEmail(String email){
+
+    public Customer setEmail(String email) {
         this.email = email;
         return this;
     }
-    public Customer setPassword(String password){
+
+    public Customer setPassword(String password) {
         this.password = password;
         return this;
     }
 
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Customer{id=" + id + "  name=" + name + "  email=" + email + "  password=" + password + "}";
     }
 }

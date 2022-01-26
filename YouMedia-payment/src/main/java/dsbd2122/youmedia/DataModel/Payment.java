@@ -22,7 +22,9 @@ public class Payment {
     @NotNull(message = "the expiry parameter cannot be blank!")
     private Date expiry;
 
+    @NotNull(message = "crediti parameter cannot be blank!")
 
+    private double crediti;
 
 
     public Integer getUser() {
@@ -41,6 +43,10 @@ public class Payment {
         return expiry;
     }
 
+    public double getCrediti() {
+        return crediti;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -57,8 +63,10 @@ public class Payment {
         this.expiry = expiry;
     }
 
+    public void setCrediti(double crediti) { this.crediti = crediti; }
+
     @Override
-    public String toString(){
-        return "PaymentInfo for user.getName() { id=" + id + "remainder" + remainder + "expiry=" + expiry + "}";
+    public String toString() {
+        return "PaymentInfo for user.getName() { id=" + id + "remainder" + remainder + "expiry=" + expiry + " crediti residui=" + crediti + "}";
     }
 }

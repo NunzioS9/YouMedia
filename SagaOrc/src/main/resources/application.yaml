@@ -1,0 +1,16 @@
+server:
+  port: 8083
+---
+spring.cloud.stream:
+  function:
+    definition: processor
+  bindings:
+    processor-in-0:
+      destination: customer-created
+    processor-out-0:
+      destination: customer-updated
+---
+service:
+  endpoints:
+    resource: http://localhost:9090
+    payment: http://localhost:9092

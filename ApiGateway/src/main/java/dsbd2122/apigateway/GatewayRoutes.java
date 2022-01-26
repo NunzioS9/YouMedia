@@ -9,16 +9,16 @@ import org.springframework.context.annotation.Configuration;
 public class GatewayRoutes {
     @Bean
     public RouteLocator routeLocator(RouteLocatorBuilder builder) {
-       return builder.routes()
-                .route( r ->
+        return builder.routes()
+                .route(r ->
                         r.path("/user/**")
                                 .uri("http://appcustomer:9091/")
                 )
-                 .route( r ->
+                .route(r ->
                         r.path("/payment/**")
                                 .uri("http://apppayment:9092/")
                 )
-                 .route( r ->
+                .route(r ->
                         r.path("/content/**")
                                 .uri("http://appresource:9090/")
                 )
