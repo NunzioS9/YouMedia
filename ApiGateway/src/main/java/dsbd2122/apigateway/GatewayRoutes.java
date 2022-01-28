@@ -10,17 +10,17 @@ public class GatewayRoutes {
     @Bean
     public RouteLocator routeLocator(RouteLocatorBuilder builder) {
        return builder.routes()
-                .route( r ->
-                        r.path("/user/**")
-                                .uri("http://appcustomer:9091/")
+                .route( p ->p
+                        .path("/user/**")
+                        .uri("http://localhost:9091")
                 )
-                 .route( r ->
-                        r.path("/payment/**")
-                                .uri("http://apppayment:9092/")
+                 .route(p ->
+                        p.path("/payment/**")
+                                .uri("http://localhost:9092/")
                 )
-                 .route( r ->
-                        r.path("/content/**")
-                                .uri("http://appresource:9090/")
+                 .route( p ->
+                        p.path("/content/**")
+                                .uri("http://localhost:9090/")
                 )
                 .build();
     }
